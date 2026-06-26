@@ -22,12 +22,12 @@ const timerInterval = setInterval(function () {
     document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
     document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-    //if (distance <= 0) {
+    if (distance <= 0) {
         clearInterval(timerInterval);
         localStorage.removeItem("timerTarget");
         document.getElementById("countdownTimer").classList.add("hidden");
         document.getElementById("lockContent").classList.remove("hidden");
-  //  }
+    }
 }, 1000);
 
 /* ==========================================
