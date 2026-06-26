@@ -65,7 +65,7 @@ function Checkdate() {
         return;
     }
 
-    if (userinput.includes('-02-13') || userinput.endsWith('02-13')) {
+    if (userinput.includes('-02-14') || userinput.endsWith('02-14')) {
         container.classList.add('hidden');
         newpage.classList.remove('hidden');
         music.play().catch(() => {});
