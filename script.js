@@ -4,73 +4,61 @@
 let targetDate = localStorage.getItem("timerTarget");
 
 if (!targetDate) {
-    // Unang bukas: Dito magsisimula ang 5-minute countdown
     targetDate = new Date().getTime() + (5 * 60 * 1000);
     localStorage.setItem("timerTarget", targetDate);
 } else {
     targetDate = parseInt(targetDate);
 }
 
-const timerInterval = setInterval(function() {
+const timerInterval = setInterval(function () {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let hours   = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    let minutes = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+    let seconds = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
 
-    if (distance < 0) {
-        hours = 0;
-        minutes = 0;
-        seconds = 0;
-    }
-
-    document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+    document.getElementById("hours").innerText   = hours   < 10 ? "0" + hours   : hours;
     document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
     document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-    if (distance <= 0) {
+    //if (distance <= 0) {
         clearInterval(timerInterval);
-        localStorage.removeItem("timerTarget"); 
-
-        document.getElementById("countdownTimer").classList.add("hidden"); 
-        document.getElementById("lockContent").classList.remove("hidden"); 
-    }
+        localStorage.removeItem("timerTarget");
+        document.getElementById("countdownTimer").classList.add("hidden");
+        document.getElementById("lockContent").classList.remove("hidden");
+  //  }
 }, 1000);
 
 /* ==========================================
-   1. STAR PARTICLES GENERATOR
+   1. STAR PARTICLES
    ========================================== */
+const starTypes = ['⭐', '✨', '🤍', '✦', '✧', '·', '°'];
+
 function createStar() {
     const star = document.createElement('div');
     star.classList.add('star');
-    
-    const starTypes = ['⭐', '✨', '🤍', '✦', '✧'];
     star.innerText = starTypes[Math.floor(Math.random() * starTypes.length)];
     star.style.left = Math.random() * 100 + 'vw';
-    
-    const duration = Math.random() * 4 + 4;
+    const duration = Math.random() * 5 + 5;
     star.style.animationDuration = duration + 's';
-    star.style.fontSize = Math.random() * 12 + 10 + 'px';
-    
+    star.style.fontSize = (Math.random() * 10 + 8) + 'px';
+    star.style.opacity = (Math.random() * 0.4 + 0.3).toString();
     document.body.appendChild(star);
-    
-    setTimeout(() => {
-        star.remove();
-    }, duration * 1000);
+    setTimeout(() => star.remove(), duration * 1000);
 }
-setInterval(createStar, 150);
+
+setInterval(createStar, 200);
 
 /* ==========================================
    2. DATE VALIDATION LOCKSCREEN
    ========================================== */
 function Checkdate() {
-    let userinput = document.getElementById("dateInput").value;
-    let errormsg = document.getElementById("errorMessage");
-  
-    const newpage = document.getElementById("letterScreen");
+    const userinput = document.getElementById("dateInput").value;
+    const errormsg  = document.getElementById("errorMessage");
+    const newpage   = document.getElementById("letterScreen");
     const container = document.getElementById("lockScreen");
-    const music = document.getElementById("bgMusic");
+    const music     = document.getElementById("bgMusic");
 
     if (!userinput) {
         errormsg.innerHTML = "Pumili ka muna ng date, Myshishi! 🥰";
@@ -78,53 +66,79 @@ function Checkdate() {
     }
 
     if (userinput.includes('-02-13') || userinput.endsWith('02-13')) {
-        container.classList.add('hidden'); 
+        container.classList.add('hidden');
         newpage.classList.remove('hidden');
-        
-        music.play().catch(error => {
-            console.log("Browser blocked autoplay, click anywhere to play:", error);
-        });
-        
+        music.play().catch(() => {});
     } else {
         errormsg.innerHTML = "Hala! Mali ka po hmp!! Try mo ulit Myshishi, it's our special moment... 🥺👉👈";
+        /* subtle shake */
+        const card = container.querySelector('.glass-card');
+        card.style.animation = 'none';
+        card.style.transform = 'translateX(-6px)';
+        setTimeout(() => { card.style.transform = 'translateX(6px)'; }, 80);
+        setTimeout(() => { card.style.transform = 'translateX(-4px)'; }, 160);
+        setTimeout(() => { card.style.transform = 'translateX(0)'; }, 240);
     }
 }
 
+/* Allow Enter key to submit */
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') Checkdate();
+});
+
 /* ==========================================
-   3. NAVIGATION CONTROLS (GALLERY, VIDEOS, OUTRO)
+   3. NAVIGATION HELPERS
    ========================================== */
-// Mula Letter Screen papuntang Gallery
 function goToGallery() {
     document.getElementById("letterScreen").classList.add("hidden");
     document.getElementById("galleryScreen").classList.remove("hidden");
 }
 
-// Balik sa Letter mula Gallery
 function backToLetter() {
     document.getElementById("galleryScreen").classList.add("hidden");
     document.getElementById("letterScreen").classList.remove("hidden");
 }
 
-// Mula Gallery papuntang Videos Screen
 function goToVideos() {
     document.getElementById("galleryScreen").classList.add("hidden");
     document.getElementById("videosScreen").classList.remove("hidden");
 }
 
-// Balik sa Gallery mula Videos Screen
 function backToGallery() {
     document.getElementById("videosScreen").classList.add("hidden");
     document.getElementById("galleryScreen").classList.remove("hidden");
 }
 
-// Mula Videos papuntang Outro Screen
 function goToOutro() {
     document.getElementById("videosScreen").classList.add("hidden");
     document.getElementById("outroScreen").classList.remove("hidden");
+    launchFloatingHearts();
 }
 
-// Balik sa Videos mula Outro Screen (Just in case gusto niya balikan)
 function backToVideos() {
     document.getElementById("outroScreen").classList.add("hidden");
     document.getElementById("videosScreen").classList.remove("hidden");
+}
+
+/* ==========================================
+   4. OUTRO FLOATING HEARTS
+   ========================================== */
+function launchFloatingHearts() {
+    const container = document.getElementById("outroContent");
+    const hearts = ['🤍','💙','🌸','✨','💫','🎀'];
+    let count = 0;
+
+    const interval = setInterval(() => {
+        if (count >= 18) { clearInterval(interval); return; }
+        const h = document.createElement('div');
+        h.classList.add('floating-heart');
+        h.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+        h.style.left  = (Math.random() * 80 + 10) + '%';
+        h.style.bottom = '20px';
+        h.style.animationDelay = (Math.random() * 0.4) + 's';
+        h.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+        container.appendChild(h);
+        setTimeout(() => h.remove(), 4000);
+        count++;
+    }, 220);
 }
