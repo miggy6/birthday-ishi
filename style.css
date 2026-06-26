@@ -1,0 +1,597 @@
+/* ==========================================
+   1. GLOBAL & BACKGROUND SETUP
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Deep space dark blue background with pink/violet center glow */
+    background:
+        radial-gradient(circle at center, rgba(255, 105, 180, 0.15) 0%, rgba(111, 66, 193, 0.1) 40%, transparent 70%),
+        linear-gradient(to bottom, #030712, #0B132B, #1C2541);
+}
+
+/* ==========================================
+   2. MAIN CONTAINER & GLASSMORPHISM
+   ========================================== */
+.form {
+    text-align: center;
+    z-index: 10;
+    width: 90%;
+    max-width: 40rem;
+    min-height: 22rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 182, 193, 0.25);
+    box-shadow:
+        0 8px 32px 0 rgba(0, 0, 0, 0.4),
+        inset 0 0 15px rgba(255, 182, 193, 0.05),
+        0 0 30px rgba(255, 105, 180, 0.15);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(168, 218, 220, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
+    margin: 2rem auto;
+}
+
+/* ==========================================
+   3. TYPOGRAPHY & HEADER CONTROLS
+   ========================================== */
+.form h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(152, 193, 217, 0.8);
+}
+
+.form h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #A8DADC;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.form .clue-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #E2E8F0;
+    margin-bottom: 20px;
+}
+
+.form .clue-text span {
+    font-size: 0.9rem;
+    color: #98C1D9;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Birthday Header Glow Text */
+.birthday-header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #FF69B4, 0 0 20px #FFB700, 0 0 35px rgba(255, 105, 180, 0.6);
+    animation: gentlePulse 2s infinite ease-in-out;
+}
+
+/* ==========================================
+   4. INPUTS & BUTTONS
+   ========================================== */
+.input-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+input[type="date"] {
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    color: #E2E8F0;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+    /* makes the native calendar icon visible against the dark background */
+    color-scheme: dark;
+}
+
+input[type="date"]:focus {
+    border-color: rgba(255, 105, 180, 0.5);
+    background: rgba(11, 19, 43, 0.8);
+}
+
+/* --- [STYLE 1] Pill-shaped button for the submit/lock screen --- */
+.submit-btn {
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 0.95rem;
+    font-family: inherit;
+    letter-spacing: 1px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: none;
+}
+
+.submit-btn:hover {
+    background: #FFFFFF;
+    color: #030712;
+    border-color: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
+/* --- [STYLE 2] Pink underlined "link" buttons for other pages --- */
+.next-page-btn {
+    background: none !important;
+    border: none !important;
+    color: #FF69B4;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-shadow: none !important;
+    display: inline-block;
+}
+
+.next-page-btn:hover {
+    color: #FFB6C1;
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
+    transform: scale(1.05);
+}
+
+.next-page-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================
+   5. LETTER LAYOUT & SCROLLBAR
+   ========================================== */
+.letter-box {
+    width: 100%;
+    max-height: 270px;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin: 10px 0;
+}
+
+.letter-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.letter-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 105, 180, 0.4);
+    border-radius: 10px;
+}
+
+.love-letter {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #ffffff;
+    text-align: left;
+    white-space: pre-line;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    margin-top: 20px;
+}
+
+/* ==========================================
+   6. LETTER TEXT REVEAL ANIMATION
+   ========================================== */
+@keyframes revealText {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+.animate-text {
+    opacity: 0;
+    animation: revealText 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.delay-sign-off {
+    animation-delay: 1.2s;
+}
+
+.sign-off {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #FFB6B2;
+    text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+    font-style: italic;
+    text-align: center;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #FF69B4, #98C1D9, transparent);
+    margin: 20px auto;
+    width: 80%;
+}
+
+.error-text {
+    color: #FF6B6B;
+    font-size: 0.9rem;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================
+   7. FALLING STAR PARTICLES
+   ========================================== */
+@keyframes fall {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(105vh) translateX(35px) rotate(45deg); opacity: 0; }
+}
+
+.star {
+    position: fixed;
+    top: -20px;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    animation: fall linear forwards;
+}
+
+/* ==========================================
+   8. PULSE ANIMATION
+   ========================================== */
+@keyframes gentlePulse {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 10px #FF69B4, 0 0 20px #FFB700, 0 0 35px rgba(255, 105, 180, 0.6);
+    }
+    50% {
+        transform: scale(1.02);
+        text-shadow: 0 0 15px #FF69B4, 0 0 30px #FFB700, 0 0 50px rgba(255, 105, 180, 0.9);
+    }
+}
+
+/* ==========================================
+   9. POLAROID GALLERY (base, used inside .form on smaller views)
+   ========================================== */
+.polaroid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-height: 480px;
+    overflow-y: auto;
+    padding: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+.polaroid-gallery::-webkit-scrollbar {
+    width: 6px;
+}
+.polaroid-gallery::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.polaroid {
+    background: #FFFFFF;
+    padding: 12px 12px 24px 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    transform: rotate(var(--rotation));
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 100%;
+    max-width: 190px;
+    border-radius: 2px;
+    pointer-events: auto;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border: 1px solid #E2E8F0;
+}
+
+.polaroid .caption {
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    color: #222222;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.polaroid:hover {
+    transform: scale(1.1) rotate(0deg) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+/* ==========================================
+   10. COUNTDOWN TIMER
+   ========================================== */
+#countdownTimer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#countdownTimer h2 {
+    color: #98C1D9;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.timer-display {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #A8DADC;
+    text-shadow: 0 0 15px rgba(168, 218, 220, 0.6);
+    margin-top: 10px;
+    font-family: monospace;
+}
+
+/* ==========================================
+   11. TIKTOK-STYLE FADE-IN-UP TEXT REVEAL
+   ========================================== */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUpEffect 1.2s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+}
+
+@keyframes fadeInUpEffect {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   12. FULL-SCREEN GALLERY PAGE OVERRIDE
+   ========================================== */
+#galleryScreen {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 95vw !important;
+    max-width: 1200px !important;
+    margin: 2rem auto !important;
+    padding: 10px !important;
+}
+
+#galleryScreen .polaroid-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 40px 30px !important;
+    width: 100% !important;
+    max-height: 70vh !important;
+    padding: 20px 0 !important;
+    overflow-y: auto;
+}
+
+#galleryScreen .polaroid {
+    width: 100% !important;
+    max-width: 280px !important;
+    padding: 16px 16px 28px 16px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45) !important;
+    justify-self: center;
+}
+
+#galleryScreen .polaroid img {
+    width: 100% !important;
+    height: 230px !important;
+    object-fit: cover !important;
+}
+
+#galleryScreen .gallery-actions {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 40px !important;
+    margin-top: 35px !important;
+    flex-wrap: wrap;
+}
+
+/* Drop to 2 columns, then 1, on narrow screens so photos don't get crushed */
+@media (max-width: 900px) {
+    #galleryScreen .polaroid-gallery {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 560px) {
+    #galleryScreen .polaroid-gallery {
+        grid-template-columns: 1fr !important;
+    }
+    #galleryScreen .polaroid img {
+        height: 280px !important;
+    }
+}
+
+/* ==========================================
+   13. VIDEOS GRID & OUTRO
+   ========================================== */
+.video-grid {
+    display: grid;
+    /* Gagamit tayo ng auto-fill para flexible ang laki depende sa screen */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+    width: 100%;
+    align-items: start; /* Para hindi mabanat pababa ang landscape cards */
+}
+
+.video-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.video-card video {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    object-fit: cover; /* Sigurado na walang itim na space sa gilid */
+}
+
+/* ==========================================
+    SPECIFIC VIDEO SHAPES (Landscape vs Portrait)
+   ========================================== */
+
+/* Para sa Video 1 & 2 (Pahiga - Standard 16:9) */
+.video-card.landscape video {
+    aspect-ratio: 16 / 9; 
+}
+
+/* Para sa Video 3 (Papatayo - TikTok/Reels style 9:16) */
+.video-card.portrait video {
+    aspect-ratio: 9 / 16;
+    max-width: 320px; /* Nilimitahan ang lapad para hindi siya maging dambuhala sa desktop */
+    margin: 0 auto; /* Naka-center ang video sa loob ng card */
+}
+
+/* ==========================================
+    OTHERS (Kopyahin mo lang ang natitirang codes mo)
+   ========================================== */
+.video-caption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #E2E8F0;
+    font-weight: 500;
+}
+
+.outro-container {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.outro-title {
+    font-size: 2.8rem;
+    color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+}
+
+.outro-subtext {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: #FF69B4;
+    opacity: 0;
+    animation: fadeInThenLoop 5s ease-in-out infinite;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInThenLoop {
+    0% { opacity: 0; transform: translateY(10px); }
+    30% { opacity: 1; transform: translateY(0); text-shadow: 0 0 15px rgba(255, 105, 180, 0.8); }
+    50% { opacity: 1; }
+    75% { opacity: 0; transform: translateY(-5px); }
+    100% { opacity: 0; }
+}
+
+@media (max-width: 480px) {
+    .form { padding: 1.5rem; }
+    .timer-display { font-size: 2.4rem; }
+    .outro-title { font-size: 2rem; }
+}
+
+@keyframes fadeInThenLoop {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(0);
+        text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+   14. GENERAL MOBILE SAFETY NET
+   ========================================== */
+@media (max-width: 480px) {
+    .form {
+        padding: 1.5rem;
+    }
+    .timer-display {
+        font-size: 2.4rem;
+    }
+    .outro-title {
+        font-size: 2rem;
+    }
+    /* Para sa mobile, sisiguraduhin nating sakop niya ang halos buong lapad ng phone */
+    .video-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 10px;
+    }
+}

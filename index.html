@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Myshishi!!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="form" id="lockScreen">
+        <h1>MYSHIHII, THIS IS FOR YOU</h1>
+        
+        <div id="countdownTimer">
+            <h2>Birthday Countdown! 🎉</h2>
+            <div class="timer-display">
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+        
+        <div id="lockContent" class="hidden">
+            <h2>Before you read this, kailangan mo muna matandaan...</h2>
+            <p class="clue-text">Kailan tayo unang nag-kape? <br><span>(Clue: Nanood tayo ng fireworks 🎆)</span></p>
+
+          <div class="input-area">
+    <input type="date" id="dateInput">
+    <button class="submit-btn" onclick="Checkdate()">Submit</button>
+</div>
+
+            <p id="errorMessage" class="error-text"></p>
+        </div>
+    </div>
+
+    <div class="form hidden" id="letterScreen">
+        <div class="birthday-header">
+            <h1> HAPPY BIRTHDAY, TO MY SPECIAL GIRL! ISHIII 🎂</h1>
+        </div>
+
+        <hr class="divider">
+
+        <div class="letter-box">
+            <p class="love-letter animate-text">
+                HELLO MYSHISHI HAPPY 17TH BIRTHDAY, ayieee HAHHAHHAH!
+                <br>
+                Thank you Ishi for your life. Thank you for being caring sa akin, lalo na sa mga kaibigan at family mo.
+                 Thank you sa love na binibigay mo sa akin and i very gratefull kase nanjaan ka para saamin ay saakin.
+                  I want to say nanandito lang ako lagi para sa iyo, and I will protect you whatever happens.
+                <br>
+                Thank you for being honest sa nararamdaman mo at sa pagtupad ng mga promises natin na magsasabi
+                tayo sa isa't isa kapag may mga problema o nararamdaman tayo. Thank you rin sa mga efforts mo,
+                dami kong natutunan sa iyo HHAHHAHAA! Baka maging teacher o pastora ka na niyan HAHAHAHHA char!
+                <br>
+                I wish you all the best, Ishi. Sana mag-grow pa tayo nang magkasama  si Lord sa ating
+                spiritual life. You are one of the most important people to me, so please don't leave me, okie? and please
+                wag kana po mag tampo you know naman lahat ginagawa ko but if di talaga there have a valid reason behind it
+                okiee na i made my promise to create you a website tada!!!! Yun lang muna HAHAHAHHHA! May isa pa talaga akong letter para sa iyo eh, pero malalaman mo rin
+                yon this week... secret muna. We love you ishi!!! (" tangalin mo ung we HUSADADYADA") 🥰
+            </p>
+            
+                <span class="sign-off animate-text delay-sign-off">
+                    HAPPY BIRTHDAY ULIT FROM YOUR ONE AND ONLY LOVER BOY, LOUIEEEEE! 💙✨
+             </span>
+        </div>
+
+        <div style="margin-top: 25px; width: 100%;">
+            <button class="next-page-btn" onclick="goToGallery()">LOOK FOR OUR MEMORIESE📸</button>
+        </div>
+    </div>
+
+ <div class="form hidden" id="galleryScreen" style="max-width: 55rem; min-height: 30rem;">
+        <div class="birthday-header">
+            <h1>📸 MEMORIES WITH YOU</h1>
+        </div>
+        
+        <hr class="divider">
+
+        <div class="polaroid-gallery">
+            
+            <div class="polaroid" style="--rotation: -5deg;">
+                <img src="pic9.jpg" alt="Memory 1">
+                <div class="caption">CONFESSION 🎆</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 4deg;">
+                <img src="pic1.jpg" alt="Memory 2">
+                <div class="caption">Coffee Time ☕</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: -2deg;">
+                <img src="pic2.jpg" alt="Memory 3">
+                <div class="caption">Cutieee 🥰</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 6deg;">
+                <img src="pic23.jpg" alt="Memory 4">
+                <div class="caption">With is You 🤍</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: -4deg;">
+                <img src="pic4.jpg" alt="Memory 5">
+                <div class="caption">Silly Moments 🤪</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic5.jpg" alt="Memory 6">
+                <div class="caption">Always 💙</div>
+            </div>
+                 
+            <div class="polaroid" style="--rotation: -5deg;">
+                <img src="pic6.jpg" alt="Memory 1">
+                <div class="caption">ayieeee 🎆</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 4deg;">
+                <img src="pic8.jpg" alt="Memory 2">
+                <div class="caption">memorable moments</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: -2deg;">
+                <img src="pic9.jpg" alt="Memory 3">
+                <div class="caption">LOVELY 🥰</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 6deg;">
+                <img src="pic10.jpg" alt="Memory 4">
+                <div class="caption">NYAKNYAKNYAK🤍</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: -4deg;">
+                <img src="pic11.jpg" alt="Memory 5">
+                <div class="caption">ASDADASD</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic12.jpg" alt="Memory 6">
+                <div class="caption">Always 💙</div>
+            </div>
+               
+            <div class="polaroid" style="--rotation: -5deg;">
+                <img src="pic13.jpg" alt="Memory 1">
+                <div class="caption">First Date 🎆</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 4deg;">
+                <img src="pic14.jpg" alt="Memory 2">
+                <div class="caption"> letss goo!!</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: -2deg;">
+                <img src="pic15.jpg" alt="Memory 3">
+                <div class="caption">Cutieee 🥰</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 6deg;">
+                <img src="pic16.jpg" alt="Memory 4">
+                <div class="caption">With You 🤍</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: -4deg;">
+                <img src="pic17.jpg" alt="Memory 5">
+                <div class="caption"> 🤪</div>
+            </div>
+
+            <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic18.jpg" alt="Memory 6">
+                <div class="caption"> 💙</div>
+            </div>
+             <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic19.jpg" alt="Memory 6">
+                <div class="caption">Always lovely </div>
+             </div>
+             <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic20.jpg" alt="Memory 6">
+                <div class="caption">cuties pics with you 💙</div>
+            </div>
+             <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic21.jpg" alt="Memory 6">
+                <div class="caption">RAMEN TIME</div>
+            </div>
+             <div class="polaroid" style="--rotation: 3deg;">
+                <img src="pic22.jpg" alt="Memory 6">
+                <div class="caption"> 💙</div>
+            </div>
+        </div>
+        <div class="gallery-actions" style="margin-top: 25px; width: 100%; text-align: center;">
+           <button class="next-page-btn" onclick="backToLetter()">◀ Back to love letter</button>
+            <button class="next-page-btn" onclick="goToVideos()">Continue to our videos ▶</button>
+        </div>
+    </div>
+<div class="form hidden" id="videosScreen" style="max-width: 55rem; min-height: 30rem; background: transparent; border: none; box-shadow: none;">
+        <div class="birthday-header">
+            <h1>🎥 OUR MOMENTS IN MOTION</h1>
+        </div>
+        <hr class="divider">
+        
+     <div class="video-grid">
+    <div class="video-card landscape">
+        <video src="video.mp4" controls></video>
+        <p class="video-caption">our reaction when we confess to each other 🤍</p>
+    </div>
+    
+    <div class="video-card landscape">
+        <video src="video2 (2).mp4" controls></video>
+        <p class="video-caption">ramen time with you🚶‍♂️🚶‍♀️</p>
+    </div>
+    
+    <div class="video-card portrait">
+        <video src="video3.mp4" controls></video>
+        <p class="video-caption">adsdadasda phootobooth time! 😤</p>
+    </div>
+</div>
+        <div style="margin-top: 35px; width: 100%; text-align: center; display: flex; justify-content: center; gap: 30px;">
+            <button class="next-page-btn" onclick="backToGallery()">◀ Balikan ang Gallery</button>
+            <button class="next-page-btn" onclick="goToOutro()">Final Message... ▶</button>
+        </div>
+    </div>
+
+    <div class="form hidden" id="outroScreen">
+        <div class="outro-container">
+            <h1 class="outro-title fade-in-up">HAPPY BIRTHDAY, ISHI! 🎂✨</h1>
+            
+            <p class="outro-subtext">with all my love</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <!-- BACKGROUND MUSIC -->
+    <audio id="bgMusic" src="Meaningful Silence [XKNZ-Zg53nk].mp3" loop></audio>
+
+</body>
+
+</html>
