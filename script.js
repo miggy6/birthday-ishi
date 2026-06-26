@@ -4,7 +4,8 @@
 let targetDate = localStorage.getItem("timerTarget");
 
 if (!targetDate) {
-    targetDate = new Date().getTime() + (5 * 60 * 1000);
+    // Changed from 5 minutes to 1 minute (1 * 60 seconds * 1000 milliseconds)
+    targetDate = new Date().getTime() + (1 * 60 * 1000);
     localStorage.setItem("timerTarget", targetDate);
 } else {
     targetDate = parseInt(targetDate);
@@ -29,7 +30,6 @@ const timerInterval = setInterval(function () {
         document.getElementById("lockContent").classList.remove("hidden");
     }
 }, 1000);
-
 /* ==========================================
    1. STAR PARTICLES
    ========================================== */
