@@ -144,3 +144,7 @@ function launchFloatingHearts() {
         count++;
     }, 220);
 }
+/* Allow Enter key to submit perfectly */
+document.getElementById("dateInput").addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') Checkdate();
+});
