@@ -115,9 +115,11 @@ function goToOutro() {
     launchFloatingHearts();
 }
 
-function backToVideos() {
-    document.getElementById("outroScreen").classList.add("hidden");
-    document.getElementById("videosScreen").classList.remove("hidden");
+function backToLetter() {
+    // Itatago nito kung ano man ang bukas (Gallery o Outro) para makabalik sa Letter
+    document.getElementById("galleryScreen").classList.add("hidden");
+    document.getElementById("outroScreen").classList.add("hidden"); 
+    document.getElementById("letterScreen").classList.remove("hidden");
 }
 
 /* ==========================================
